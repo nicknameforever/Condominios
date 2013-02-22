@@ -63,7 +63,7 @@
 					
 					$scope.upload_count += 1;
 					
-					api.check_provider($scope.endpoint, files[i]).then(function(upload){
+					api.check_provider($scope.endpoint, files[i], $scope.custom_params).then(function(upload){
 						ret += 1;
 						$scope.uploads.push(upload);
 						if(ret == length)

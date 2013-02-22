@@ -240,44 +240,14 @@
 				
 				if(!!the_file.dir_path)
 					params['file_path'] = the_file.dir_path;
+					
 				
-				return $http({
-					method: 'GET',
-					url: api_endpoint + '/new',
-					params: params
-				}).then(function(result){
-					if(!!residencies[result.data.residence]) {
+				var api = new condoConnection(api_endpoint, params);
 						
-						var api = new condoConnection(api_endpoint, params);
-						
-						//
-						// TODO:: Check if a file is already in the list and reject if it is
-						//
-						return residencies[result.data.residence].new_upload(api, the_file);	// return the instantiated provider
-						
-					} else {
-						return $q.reject({
-							type: 'error',
-							number: 0,
-							file: the_file
-						});
-					}
-				}, function(reason) {
-					if(reason.status == 406) {
-						return $q.reject({
-							type: 'warn',
-							number: 0,
-							details: reason.data,
-							file: the_file
-						});
-					} else {
-						return $q.reject({
-							type: 'warn',
-							number: 1,
-							file: the_file
-						});
-					}
-				});
+				//
+				// TODO:: Check if a file is already in the list and reject if it is
+				//
+				return residencies['AmazonS3'].new_upload(api, the_file);	// return the instantiated provider
 			}
 		};
 	}]).factory('Condo.Registrar', function(){
