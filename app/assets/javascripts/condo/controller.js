@@ -63,24 +63,11 @@
 					
 					$scope.upload_count += 1;
 					
-					api.check_provider($scope.endpoint, files[i], $scope.custom_params).then(function(upload){
-						ret += 1;
-						$scope.uploads.push(upload);
-						if(ret == length)
-							$scope.check_autostart();
-					}, function(failure) {
-						
-						$scope.upload_count -= 1;
-						
-						ret += 1;
-						if(ret == length)
-							$scope.check_autostart();
-							
-						//
-						// broadcast this so it can be handled by a directive
-						//
-						broadcaster.broadcast('coNotice', failure);
-					});
+					var upl = api.check_provider($scope.endpoint, files[i], $scope.custom_params);
+					ret += 1;
+					$scope.uploads.push(upl);
+					if(ret == length)
+						$scope.check_autostart();
 				}
 			};
 			
