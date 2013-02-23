@@ -63,7 +63,7 @@
 					
 					$scope.upload_count += 1;
 					
-					var upl = api.check_provider($scope.endpoint, files[i], $scope.custom_params);
+					var upl = api.check_provider($scope.endpoint, files[i]);
 					ret += 1;
 					$scope.uploads.push(upl);
 					if(ret == length)
@@ -130,6 +130,7 @@
 				// COMPLETED = 4,
 				// ABORTED = 5
 				//
+
 				if ($scope.autostart) {
 					var shouldStart = true,
 						state, i, length, started = 0;

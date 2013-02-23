@@ -62,6 +62,7 @@
 				api.update().then(function(data) {
 					self.progress = self.size;	// Update to 100%
 					self.state = COMPLETED;
+					updateUploaderView();
 				}, defaultError);
 			},
 			

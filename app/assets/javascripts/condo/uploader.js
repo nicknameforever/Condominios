@@ -118,6 +118,8 @@
 				
 				this.aborting = false;
 				params = params || {};
+				
+				addCustomUploadParams(params);
 					
 				return $http({
 					method: 'PUT',
